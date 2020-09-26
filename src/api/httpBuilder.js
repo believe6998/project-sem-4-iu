@@ -13,9 +13,9 @@ function buildGet(client) {
 }
 
 function buildPost(client) {
-    return async (url, data) => {
+    return async (url, data, config) => {
         try {
-            const config = {
+            config = {
                 headers: {
                     'x-access-token' : localStorage.getItem('user-token'),
                     'Access-Control-Allow-Headers': 'x-access-token',

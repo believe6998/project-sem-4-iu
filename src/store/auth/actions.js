@@ -9,7 +9,6 @@ export async function authRequest({commit, dispatch}, user) {
       method: 'POST'
     })
       .then(resp => {
-        console.log(resp)
         const token = resp.data.data.token
         const user = resp.data.data.account_full.account.username
         const role = resp.data.data.account_full.role_name

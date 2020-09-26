@@ -24,10 +24,13 @@ export async function loadAccounts({ commit }) {
 export async function loadAccount({commit, dispatch}, accountId) {
   try {
     commit('fetchAccountBegin')
-    console.log(accountId)
-    const student = await httpClient.post(`/account/find/${accountId}`)
-
-    commit('fetchAccountSuccess', student)
+    const rs = await httpClient.post(`/account/find/${accountId}`)
+    let account = {
+      username: rs.data.account.username,
+      email: rs.data.account.email,
+      roleID: rs.data.role_id
+    }
+    commit('fetchAccountSuccess', account)
 
   } catch (error) {
     commit('fetchAccountError', {
@@ -38,12 +41,11 @@ export async function loadAccount({commit, dispatch}, accountId) {
 
 export async function saveAccount({commit}, account) {
   commit('saveAccountBegin')
-  console.log(account)
   try {
     if (account.id) {
-      await httpClient.post(`/account/update${account.id}`, data)
+      await httpClient.post(`/account/update${account.id}`, account)
     } else {
-      await httpClient.post('/account/create', data)
+      await httpClient.post('/account/create', account)
     }
 
     commit('saveAccountSuccess')

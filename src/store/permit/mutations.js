@@ -22,7 +22,7 @@ export function fetchPermitBegin (state) {
     state.error = null
 }
 
-export function fetchPermitSuccess (state, permit) {
+export function fetchPermitSuccess (state, {permit}) {
   state.permit = permit
   state.error = null
   state.isLoading = false

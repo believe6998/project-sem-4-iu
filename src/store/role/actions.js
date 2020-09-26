@@ -22,9 +22,10 @@ export async function loadRoles({ commit }) {
 export async function loadRole({commit, dispatch}, roleId) {
   try {
     commit('fetchRoleBegin')
-    const role = await httpClient.post(`/role/find/${roleId}`)
-
-    commit('fetchRoleSuccess', role)
+    const response = await httpClient.post(`/role/find/${roleId}`)
+    commit('fetchRoleSuccess', {
+      role: response.data
+    })
 
   } catch (error) {
     commit('fetchRoleError', {

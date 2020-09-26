@@ -89,12 +89,6 @@
 
           <q-input
             outlined
-            v-model="currentAccount.password"
-            label="Password"
-          />
-
-          <q-input
-            outlined
             v-model="currentAccount.roleID"
             label="Role ID"
           />

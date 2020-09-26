@@ -22,9 +22,11 @@ export async function loadPermits({ commit }) {
 export async function loadPermit({commit, dispatch}, roleId) {
   try {
     commit('fetchPermitBegin')
-    const permit = await httpClient.post(`/permit/find/${roleId}`)
+    const response = await httpClient.post(`/permit/find/${roleId}`)
 
-    commit('fetchPermitSuccess', permit)
+    commit('fetchPermitSuccess', {
+      permit: response.data
+    })
 
   } catch (error) {
     commit('fetchPermitError', {
@@ -38,9 +40,9 @@ export async function savePermit({commit}, permit) {
 
   try {
     if (permit.id) {
-      await httpClient.post(`/permit/update${permit.id}`, data)
+      await httpClient.post(`/permit/update${permit.id}`, permit)
     } else {
-      await httpClient.post('/permit/create', data)
+      await httpClient.post('/permit/create', permit)
     }
 
     commit('savePermitSuccess')

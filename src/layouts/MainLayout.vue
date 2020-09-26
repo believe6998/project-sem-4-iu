@@ -41,7 +41,7 @@
                       v-if="role === 'sp'"
                       v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="send"/>
+                  <q-icon name="person"/>
                 </q-item-section>
 
                 <q-item-section>
@@ -49,9 +49,9 @@
                 </q-item-section>
               </q-item>
 
-              <q-item active-class="tab-active" v-if="role === 'sp'" to="/roles" class="q-ma-sm navigation-item" clickable v-ripple>
+              <q-item active-class="tab-active" to="/roles" class="q-ma-sm navigation-item" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="send"/>
+                  <q-icon name="supervisor_account"/>
                 </q-item-section>
 
                 <q-item-section>
@@ -61,7 +61,7 @@
 
               <q-item active-class="tab-active" to="/permissions" class="q-ma-sm navigation-item" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="attach_money"/>
+                  <q-icon name="admin_panel_settings"/>
                 </q-item-section>
 
                 <q-item-section>

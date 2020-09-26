@@ -79,7 +79,7 @@
           <q-input
             outlined
             v-model="currentRole.name"
-            label="Username"
+            label="Name"
           />
 
           <q-card-actions align="right" class="bg-white text-teal">
@@ -179,10 +179,11 @@ export default {
       await this.loadRoles()
     },
     async showData(roleId = null) {
-      this.currentAccount = {}
+      this.currentRole = {}
       if (roleId) {
         await this.loadRole(roleId)
         this.currentRole = this.role
+        console.log(this.currentRole)
       }
       this.dialog = true;
     },

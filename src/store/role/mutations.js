@@ -22,7 +22,7 @@ export function fetchRoleBegin (state) {
     state.error = null
 }
 
-export function fetchRoleSuccess (state, role) {
+export function fetchRoleSuccess (state, {role}) {
   state.role = role
   state.error = null
   state.isLoading = false
