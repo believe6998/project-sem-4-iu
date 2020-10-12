@@ -93,6 +93,15 @@
             label="Role ID"
           />
 
+          <q-select
+            filled
+            v-model="currentAccount.roleID"
+            :options="roles"
+            label="Standard"
+            emit-value
+            map-options
+          />
+
           <q-card-actions align="right" class="bg-white text-teal">
             <q-btn flat label="Submit" type="submit"/>
             <q-btn flat label="Close" v-close-popup/>
@@ -199,6 +208,8 @@ export default {
     },
     async showData(accountId = null) {
       this.currentAccount = {}
+      await this.loadRoles()
+      console.log(this.roles)
       if (accountId) {
         await this.loadAccount(accountId)
         this.currentAccount = this.account
