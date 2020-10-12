@@ -12,9 +12,12 @@ export async function authRequest({commit, dispatch}, user) {
         const token = resp.data.data.token
         const user = resp.data.data.account_full.account.username
         const role = resp.data.data.account_full.role_name
+        let navs = resp.data.data.account_full.navs
+        navs = JSON.stringify(navs)
         localStorage.setItem('user-token', token)
         localStorage.setItem('user', user)
         localStorage.setItem('role', role)
+        localStorage.setItem('navs', navs)
         commit('authSuccess', token)
         resolve(resp)
       })
@@ -36,6 +39,7 @@ export async function logout({commit}) {
     localStorage.removeItem('user-token')
     localStorage.removeItem('user')
     localStorage.removeItem('role')
+    localStorage.removeItem('navs')
     resolve()
   })
 }

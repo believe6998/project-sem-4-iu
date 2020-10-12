@@ -87,6 +87,14 @@
             label="Email"
           />
 
+           <q-input
+            outlined
+            v-if="isEdit === false"
+            v-model="currentAccount.password"
+            label="Password"
+          />
+
+
           <q-input
             outlined
             v-model="currentAccount.roleID"
@@ -126,6 +134,7 @@ export default {
       customer: {},
       currentAccount: {},
       mode: "list",
+      isEdit: false,
       columns: [
         {
           name: "id",
@@ -199,7 +208,9 @@ export default {
     },
     async showData(accountId = null) {
       this.currentAccount = {}
+      this.isEdit = false
       if (accountId) {
+        this.isEdit = true
         await this.loadAccount(accountId)
         this.currentAccount = this.account
       }

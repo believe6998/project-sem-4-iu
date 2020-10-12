@@ -34,7 +34,7 @@
           <hr/>
           <q-scroll-area style="height:100%;">
             <q-list padding>
-              <q-item active-class="tab-active"
+              <!-- <q-item active-class="tab-active"
                       to="/accounts"
                       class="q-ma-sm navigation-item"
                       clickable
@@ -47,9 +47,9 @@
                 <q-item-section>
                   Accounts
                 </q-item-section>
-              </q-item>
+              </q-item> -->
 
-              <q-item active-class="tab-active" to="/roles" class="q-ma-sm navigation-item" clickable v-ripple>
+              <!-- <q-item active-class="tab-active" to="/roles" class="q-ma-sm navigation-item" clickable v-ripple>
                 <q-item-section avatar>
                   <q-icon name="supervisor_account"/>
                 </q-item-section>
@@ -67,7 +67,18 @@
                 <q-item-section>
                   Permissions
                 </q-item-section>
+              </q-item> -->
+
+              <q-item v-for="(nav, index) in navs" :key="index" active-class="tab-active" v-bind:to=nav.route class="q-ma-sm navigation-item" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon v-bind:name="nav.icon"/>
+                </q-item-section>
+
+                <q-item-section>
+                  {{nav.name}}
+                </q-item-section>
               </q-item>
+
             </q-list>
           </q-scroll-area>
         </div>
@@ -98,13 +109,15 @@ export default {
     return {
       left: false,
       user: '',
-      role: ''
+      role: '',
+      navs: []
     }
   },
   methods: {
     getUser(){
       this.user = localStorage.getItem('user')
       this.role = localStorage.getItem('role')
+      this.navs = JSON.parse(localStorage.getItem('navs'))
     },
     ...mapActions({
       authLogout: 'auth/logout'
